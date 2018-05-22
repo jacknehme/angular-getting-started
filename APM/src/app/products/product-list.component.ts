@@ -19,12 +19,12 @@ export class ProductListComponent implements OnInit {
     get listFilter(): string {
         return this._listFilter;
     }
-    set listFilter(value: string){
+    set listFilter(value: string) {
         this._listFilter = value;
         this.filterProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
     }
 
-    products: IProduct[] = [ {
+    products: IProduct[] = [{
         "productId": 1,
         "productName": "Leaf Rake",
         "productCode": "GDN-0011",
@@ -58,15 +58,15 @@ export class ProductListComponent implements OnInit {
         return arrProd;
     }
 
-    toggleImage():void {
+    toggleImage(): void {
         this.showImage = !this.showImage;
     }
 
     onRatingClicked(message: string): void {
-        this.message = message;
+        this.pageTitle = 'Product List: ' + message;
     }
 
-    ngOnInit():void {
+    ngOnInit(): void {
         console.log('In OnInit');
     }
 }
