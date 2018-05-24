@@ -3,9 +3,9 @@ import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    selector: 'pm-product',
     templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.css']
+    styleUrls: ['./product-list.component.css'],
+    providers: [ProductService]
 })
 
 export class ProductListComponent implements OnInit {
@@ -33,7 +33,7 @@ export class ProductListComponent implements OnInit {
 
     performFilter(filterBy: string): IProduct[] {
         filterBy = filterBy.toLocaleLowerCase();
-        let arrProd = this.products.filter((product: IProduct) => {
+        const arrProd = this.products.filter((product: IProduct) => {
             return product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1;
         });
         return arrProd;
@@ -51,7 +51,8 @@ export class ProductListComponent implements OnInit {
         console.log('In OnInit');
         this._productService.getProducts()
                             .subscribe(
-                                products => {this.products = products
+                                products => {
+                                    this.products = products;
                                     this.filterProducts = this.products;
                                 },
                                 error => this.errorMessage = <any>error
